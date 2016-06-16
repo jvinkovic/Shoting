@@ -1,0 +1,2 @@
+timetorun=30
+interval=12
