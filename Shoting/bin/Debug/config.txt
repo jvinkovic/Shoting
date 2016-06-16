@@ -1,2 +1,2 @@
 timetorun=30
-interval=12
+intervalInSeconds=12

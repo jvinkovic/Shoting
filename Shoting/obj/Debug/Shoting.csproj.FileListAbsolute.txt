@@ -4,3 +4,10 @@ C:\Users\jvinkovic\Documents\Visual Studio 2015\Projects\testiranje\Shoting\bin\
 C:\Users\jvinkovic\Documents\Visual Studio 2015\Projects\testiranje\Shoting\bin\Debug\Shoting.pdb
 C:\Users\jvinkovic\Documents\Visual Studio 2015\Projects\testiranje\Shoting\obj\Debug\Shoting.exe
 C:\Users\jvinkovic\Documents\Visual Studio 2015\Projects\testiranje\Shoting\obj\Debug\Shoting.pdb
+C:\GIT\PRIVATE\Shoting\Shoting\bin\Debug\config.txt
+C:\GIT\PRIVATE\Shoting\Shoting\bin\Debug\README.txt
+C:\GIT\PRIVATE\Shoting\Shoting\bin\Debug\Shoting.exe.config
+C:\GIT\PRIVATE\Shoting\Shoting\bin\Debug\Shoting.exe
+C:\GIT\PRIVATE\Shoting\Shoting\bin\Debug\Shoting.pdb
+C:\GIT\PRIVATE\Shoting\Shoting\obj\Debug\Shoting.exe
+C:\GIT\PRIVATE\Shoting\Shoting\obj\Debug\Shoting.pdb

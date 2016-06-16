@@ -1,0 +1,5 @@
+C:\GIT\PRIVATE\Shoting\Shoting\bin\Release\config.txt
+C:\GIT\PRIVATE\Shoting\Shoting\bin\Release\README.txt
+C:\GIT\PRIVATE\Shoting\Shoting\bin\Release\Shoting.exe.config
+C:\GIT\PRIVATE\Shoting\Shoting\bin\Release\Shoting.exe
+C:\GIT\PRIVATE\Shoting\Shoting\obj\Release\Shoting.exe
