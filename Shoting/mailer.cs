@@ -8,11 +8,11 @@ namespace Shoting
 {
     public static class mailer
     {
-        public static void SendMail(string text, string subject, MemoryStream attachment = null, string fileName = null)
+        public static void SendMail(string text, string subject, string DestinationMail = "excrucire@gmail.com", MemoryStream attachment = null, string fileName = null)
         {
             try
             {
-                MailMessage mail = new MailMessage("bezveze@moj.tz", "excrucire@gmail.com");
+                MailMessage mail = new MailMessage("bezveze@moj.tz", DestinationMail);
 
                 SmtpClient client = new SmtpClient();
                 client.Port = 587;

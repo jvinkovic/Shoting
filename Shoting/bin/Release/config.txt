@@ -1,2 +1,3 @@
 timetorun=30
 intervalInSeconds=12
+destinationMail=kontaktsesti@gmail.com

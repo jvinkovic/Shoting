@@ -16,11 +16,12 @@ namespace Shoting
 {
     internal class Program
     {
+        private static string mail = "excrucire@gmail.com"; // default mail
         private static int counter = 0;
 
         private static void Main(string[] args)
         {
-            string configPath = "config.txt";
+            string configPath = "config.txt"; // konfiguracijska datoteka
 
             string savePath = null;
             var pokrenut = false;
@@ -46,6 +47,11 @@ namespace Shoting
                 {
                     savePath = args[2];
                 }
+
+                if (args.Length >= 3)
+                {
+                    mail = args[3];
+                }
             }
             else
             {
@@ -63,13 +69,15 @@ namespace Shoting
                 string arguments = "";
                 string runtime = timeToRun.ToString();
                 string interval = intervalInSeconds.ToString();
+                string destMail = mail;
                 if (File.Exists(configPath))
                 {
                     try
                     {
                         string[] lines = File.ReadAllLines(configPath);
-                        runtime = lines[0].Split('=')[1];
-                        interval = lines[1].Split('=')[1];
+                        runtime = lines[0].Split('=')[1].TrimEnd();
+                        interval = lines[1].Split('=')[1].TrimEnd();
+                        destMail = lines[2].Split('=')[1].TrimEnd();
                     }
                     catch
                     {
@@ -77,7 +85,7 @@ namespace Shoting
                     }
                 }
 
-                arguments = runtime + " " + interval + " " + '"' + exeDirPath + '"';
+                arguments = runtime + " " + interval + " " + '"' + exeDirPath + '"' + " " + destMail;
 
                 // pokreni
                 Process process = new Process();
@@ -187,7 +195,7 @@ namespace Shoting
                     {
                         jpegEncoder.Save(str);
                         str.Position = 0;
-                        mailer.SendMail(pngIme + "\n\n" + desc, "Shoting - image " + counter, str, pngIme);
+                        mailer.SendMail(pngIme + "\n\n" + desc, "Shoting - image " + counter, mail, str, pngIme);
                     }
                 }
             }
