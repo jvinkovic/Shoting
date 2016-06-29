@@ -8,7 +8,7 @@ namespace Shoting
 {
     public static class mailer
     {
-        public static void SendMail(string text, string subject, string DestinationMail = "excrucire@gmail.com", MemoryStream attachment = null, string fileName = null)
+        public static void SendMail(string text, string subject, string DestinationMail, MemoryStream attachment = null, string fileName = null)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace Shoting
                 }
 
                 client.UseDefaultCredentials = false;
-                client.Credentials = new NetworkCredential("subtle.parser", "ovojesifra");
+                client.Credentials = new NetworkCredential("pokazni.mail", "shbiivsthipkgnmt"); // using app password
 
                 client.Send(mail);
 

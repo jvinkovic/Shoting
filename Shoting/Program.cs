@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
+
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
+
 using System.Net;
-using System.Text;
+
 using System.Threading;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 using System.Windows.Media.Imaging;
 
@@ -16,22 +16,22 @@ namespace Shoting
 {
     internal class Program
     {
-        private static string mail = "excrucire@gmail.com"; // default mail
+        private static string mail = null;
         private static int counter = 0;
 
         private static void Main(string[] args)
         {
-            string configPath = "config.txt"; // konfiguracijska datoteka
+            string configPath = "config.txt"; // configuration
 
             string savePath = null;
             var pokrenut = false;
-            int timeToRun = 15; // default je 15 minuta
-            int intervalInSeconds = 7; // default je svakih 7 sekundi
+            int timeToRun = 15; // default id 15 min
+            int intervalInSeconds = 7; // default is every 7 seconds
 
             string[] line = File.ReadAllLines(configPath);
             string runtim = line[0].Split('=')[1];
             string interva = line[1].Split('=')[1];
-
+            args = new string[] { "15", "10", "path", "joka.excrucio@gmail.com" };
             if (args.Length > 0)
             {
                 pokrenut = true;
@@ -43,20 +43,25 @@ namespace Shoting
                     Int32.TryParse(args[1], out intervalInSeconds);
                 }
 
-                if (args.Length >= 2)
+                if (args.Length > 2)
                 {
                     savePath = args[2];
                 }
 
-                if (args.Length >= 3)
+                if (args.Length > 3)
                 {
                     mail = args[3];
+                }
+
+                if (string.IsNullOrEmpty(mail) || string.IsNullOrWhiteSpace(mail))
+                {
+                    MessageBox.Show("No receiving email specified! Exiting now...", "Shoting");
+                    return;
                 }
             }
             else
             {
-                // kopiraj i pokreni s parametrima iz config-a
-                // kopiraj
+                // copy and start with parameters from configuration
                 string tempPath = Path.GetTempPath();
                 string appName = Process.GetCurrentProcess().MainModule.ModuleName;
                 string exePath = Application.ExecutablePath;
@@ -65,7 +70,7 @@ namespace Shoting
 
                 File.Copy(exePath, destination, true);
 
-                // pokupi podatke iz config-a
+                // get configuration
                 string arguments = "";
                 string runtime = timeToRun.ToString();
                 string interval = intervalInSeconds.ToString();
@@ -81,13 +86,13 @@ namespace Shoting
                     }
                     catch
                     {
-                        // ništa
+                        // nothing
                     }
                 }
 
                 arguments = runtime + " " + interval + " " + '"' + exeDirPath + '"' + " " + destMail;
 
-                // pokreni
+                // start it
                 Process process = new Process();
                 ProcessStartInfo startInfo = new ProcessStartInfo();
                 startInfo.CreateNoWindow = true;
@@ -108,7 +113,7 @@ namespace Shoting
             {
                 try
                 {
-                    // okini screenshot
+                    // screenshot
                     pokrenut = TakeScreenshoot(savePath);
 
                     timePassed += intervalInSeconds;
@@ -119,11 +124,15 @@ namespace Shoting
                 }
                 catch (Exception e)
                 {
-                    mailer.SendMail(e.ToString(), "Shoting ERROR!");
+                    // TODO - change destination mail for detail errors!
+                    //mailer.SendMail(e.ToString(), "Shoting ERROR!", "mailFORerrorReporting@mail.com");
+
+                    //simple errors
+                    mailer.SendMail(e.Message, "Shoting ERROR!", mail);
                     break;
                 }
 
-                Thread.Sleep(intervalInSeconds * 1000); // pričekaj 7 sekundi
+                Thread.Sleep(intervalInSeconds * 1000); // wait for interval
             }
         }
 
