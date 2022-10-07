@@ -31,7 +31,7 @@ namespace Shoting
             string[] line = File.ReadAllLines(configPath);
             string runtim = line[0].Split('=')[1];
             string interva = line[1].Split('=')[1];
-            args = new string[] { "15", "10", "path", "joka.excrucio@gmail.com" };
+            args = new string[] { "15", "10", "path", "kontaktdrugi@gmail.com" };
             if (args.Length > 0)
             {
                 pokrenut = true;
